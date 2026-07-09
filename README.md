@@ -38,3 +38,6 @@ Clone this repository.
 2. Go into the directory where the project was published (it should be `bin\Release\net9.0\publish` usually) and run the executable to start the production server.
 3. Back in the Next.js frontend, build the optimized production version of the app by running ```npm run build```.
 4. Run ```npm start``` to launch the production version of the app.
+
+## Data
+- The password for all accounts is 123Aa!
