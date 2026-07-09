@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  prefersdark: true;
+  --color-neutral: white;
+  --color-neutral-content: black;
+}
+
+@custom-variant hover (&:hover);
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme {  
+  --breakpoint-2xs: 23rem;
+  --breakpoint-xs: 30rem;
+
+  --animate-hourglass-cycle: hourglass-cycle 2s linear infinite;
+  --animate-hourglass-flip: hourglass-flip 2s linear infinite;
+  --animate-key-press: key-press 1.5s ease infinite;
+  --animate-key-press-text: key-press-text 1.5s ease infinite;
+  --animate-shake: shake 0.8s forwards ease;
+
+  @keyframes hourglass-cycle {
+    0% { opacity: 1; }
+    25% { opacity: 1; }
+    25.01% { opacity: 0; }
+    100%  { opacity: 0; }
+  }
+
+  @keyframes hourglass-flip {
+    0% { opacity: 0; }
+    75% { opacity: 0; }
+    75.01% { 
+      opacity: 1; 
+      transform: rotate(0deg); 
+    }
+    100% { 
+      opacity: 1; 
+      transform: rotate(180deg); 
+    }
+  }
+
+  @keyframes key-press {
+    33.33% { 
+      transform: translateY(0);
+      fill: var(--color-base-100); 
+    }
+    66.67% { 
+      transform: translateY(22px); 
+      fill: currentColor; 
+    }
+    100% { 
+      transform: translateY(0);
+      fill: var(--color-base-100); 
+    }
+  }
+  
+  @keyframes key-press-text {
+    33.33% { fill: currentColor; }
+    66.66% { fill: var(--color-base-100); }
+    100% { fill: currentColor; }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateY(0); }
+    12.5% { transform: translateY(-4px); }
+    25% { transform: translateY(4px); }
+    37.5% { transform: translateY(-2px); }
+    50% { transform: translateY(0);  }
+    62.5% { transform: translateY(-4px); }
+    75% { transform: translateY(4px); }
+    87.5% { transform: translateY(-2px); }
+  }
+}
+
+@utility absolute-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@utility absolute-center-x {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@utility absolute-center-y {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@utility btn {
+  @media (prefers-color-scheme: dark) {
+    --btn-bg: var(--btn-color, var(--color-gray-800));
+    --btn-border: color-mix(in srgb, var(--btn-bg), white 15%);
+  }
+}
+
+@utility gutter-stable {
+  scrollbar-gutter: stable;
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+}
+
+aside {
+  height: var(--aside-height);
+  position: sticky;
+  top: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+}
+
+mark {
+  background-color: var(--color-primary);
+  color: var(--color-base-100);
+}
+
+.hide-asides aside {
+  height: 0!important;
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+  }
+}

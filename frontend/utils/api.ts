@@ -1,0 +1,1 @@
+export const API_URL = `http://localhost:${process.env.API_PORT ?? 5255}`;
