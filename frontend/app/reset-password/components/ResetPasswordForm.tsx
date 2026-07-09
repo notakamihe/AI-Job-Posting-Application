@@ -101,7 +101,7 @@ export default function ResetPasswordForm({ email, token }: { email: string; tok
             type="password"
             value={formValues.password} 
           />
-          <p className="invisible text-xs text-error pt-1 min-h-5 peer-user-invalid:visible">
+          <p className="invisible text-xs text-error pt-1 mb-px h-5 peer-user-invalid:h-auto peer-user-invalid:visible">
             Password must be 6+ characters, and contain both an upper and lowercase letter, number, and symbol.
           </p>
         </div>
