@@ -63,8 +63,9 @@ public class ChatService : IChatService
 
             var chat = new Chat();
             _unitOfWork.Chats.Add(chat);
-            
-            var existing = (await _unitOfWork.Chats.GetByUsersAsync(users)).Find(c => c.Users.Count == users.Count);
+
+            var chats = await _unitOfWork.Chats.GetByUsersAsync(users);
+            var existing = chats.Find(c => c.Users.Count == users.Count);
 
             if (existing is not null)
                 throw new HubException(

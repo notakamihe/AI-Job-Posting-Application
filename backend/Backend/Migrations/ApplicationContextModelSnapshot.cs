@@ -531,6 +531,41 @@ namespace Backend.Migrations
                     b.ToTable("AspNetUsers", (string)null);
 
                     b.UseTptMappingStrategy();
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "chatbot",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "23677e6d-562e-4b52-9015-63f6ce8e7cd1",
+                            Email = "chatbot@jobpostingsite.site",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "CHATBOT@JOBPOSTINGSITE.SITE",
+                            NormalizedUserName = "CHATBOT@JOBPOSTINGSITE.SITE",
+                            PhoneNumberConfirmed = false,
+                            RefreshTokenExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "72780ec7-d93a-425e-9c49-081f5b920928",
+                            TwoFactorEnabled = false,
+                            UserName = "chatbot@jobpostingsite.site"
+                        },
+                        new
+                        {
+                            Id = "94ea3562-a459-4082-b760-5a5937970681",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2ea05998-8332-456a-84ec-bcf697d1647f",
+                            Email = "admin@jobpostingsite.site",
+                            EmailConfirmed = true,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "ADMIN@JOBPOSTINGSITE.SITE",
+                            NormalizedUserName = "ADMIN@JOBPOSTINGSITE.SITE",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIMoxHXLwcvmJ4S9f4bza70vJmVdfFCcQjSRFXMa+r0TwD5AgiOwdoUQjFGnCbyPhg==",
+                            PhoneNumberConfirmed = false,
+                            RefreshTokenExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "5acd98f7-66f5-470e-8a13-f3f48345eb73",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@jobpostingsite.site"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Models.WorkExperienceEntry", b =>
@@ -645,6 +680,20 @@ namespace Backend.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8c6c5021-2446-40bc-aaa7-55b3249cee46",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "8f1b9036-f7b9-45dd-a809-4d4ca49c7aec",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -732,6 +781,13 @@ namespace Backend.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "94ea3562-a459-4082-b760-5a5937970681",
+                            RoleId = "8c6c5021-2446-40bc-aaa7-55b3249cee46"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

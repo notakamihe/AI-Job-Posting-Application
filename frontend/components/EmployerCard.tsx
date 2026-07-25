@@ -41,12 +41,14 @@ export default function EmployerCard({ className, employer, highlight, linkNewTa
         <span className="mr-3 leading-tight mt-px">
           <Highlightable text={employer.industry} highlight={highlight} />
         </span>
-        <span className="leading-tight">
-          <FaLocationDot className="inline text-xs mr-1.5" />
-          <span className="align-middle">
-            <Highlightable text={employer.location} highlight={highlight} />
-          </span> 
-        </span>
+        {employer.location && (
+          <span className="leading-tight">
+            <FaLocationDot className="inline text-xs mr-1.5" />
+            <span className="align-middle">
+              <Highlightable text={employer.location} highlight={highlight} />
+            </span> 
+          </span>
+        )}
       </div>
       {employer.about && (
         <p className="text-sm line-clamp-3 mt-1">

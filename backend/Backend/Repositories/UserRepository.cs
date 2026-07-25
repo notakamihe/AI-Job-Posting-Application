@@ -48,31 +48,31 @@ public class UserRepository : Repository<User>, IUserRepository
 
     public Task<User?> GetByIdAsync(string id, string? role = null, bool includeChatbot = false)
     {
-        var query = role is not null
-            ? (
-                from u in _context.Users
+        IQueryable<User> query = _context.Users;
+
+        if (role is not null)
+            query =
+                from u in query
                 join ur in _context.UserRoles on u.Id equals ur.UserId
                 join r in _context.Roles on ur.RoleId equals r.Id
                 where r.Name == role
-                select u
-            )
-            : _context.Users;
-        
+                select u;
+
         return query.Where(u => includeChatbot || u.Id != "chatbot").IncludeAll().FirstOrDefaultAsync(u => u.Id == id);
     }
 
     public Task<List<User>> GetByIdsAsync(List<string> ids, string? role = null, bool includeChatbot = false)
     {
-        var query = role is not null
-            ? (
-                from u in _context.Users
-                join userRole in _context.UserRoles on u.Id equals userRole.UserId
-                join r in _context.Roles on userRole.RoleId equals r.Id
+        IQueryable<User> query = _context.Users;
+
+        if (role is not null)
+            query =
+                from u in query
+                join ur in _context.UserRoles on u.Id equals ur.UserId
+                join r in _context.Roles on ur.RoleId equals r.Id
                 where r.Name == role
-                select u
-            )
-            : _context.Users;
-        
+                select u;
+
         return query.Where(u => ids.Contains(u.Id) && (includeChatbot || u.Id != "chatbot")).IncludeAll().ToListAsync();
     }
 
@@ -92,7 +92,7 @@ public class UserRepository : Repository<User>, IUserRepository
         );
         var query = sql
             .Where(u => u.Id != "chatbot")
-            .Where(u => !(u is Applicant) || !((Applicant)u).IsPrivate || ((Applicant)u).Id == userId);
+            .Where(u => !(u is Applicant) || !((Applicant)u).IsPrivate || u.Id == userId);
 
         switch (type)
         {

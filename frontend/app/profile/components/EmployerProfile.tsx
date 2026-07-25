@@ -282,7 +282,7 @@ export default function EmployerProfile({
               </>
             )}
           </div>
-          {(reviews.results.length > 0 || user?.type === "Applicant") && (
+          {(reviews.totalCount > 0 || user?.type === "Applicant") && (
             <div>
               <div className="flex items-center gap-5">
                 <div className="grow">
