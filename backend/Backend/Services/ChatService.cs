@@ -49,7 +49,7 @@ public class ChatService : IChatService
         return message;
     }
     
-    public async Task<Chat> CreateAsync(List<User> users, CreateChatMessagePayload? request = null)
+    public async Task<Chat> CreateAsync(List<User> users, CreateChatMessagePayload? payload = null)
     {
         await using var transaction = await _unitOfWork.StartTransactionAsync();
 
@@ -76,8 +76,8 @@ public class ChatService : IChatService
 
             await _unitOfWork.CompleteAsync();
 
-            if (request is not null)
-                await CreateMessageAsync(chat, request);
+            if (payload is not null)
+                await CreateMessageAsync(chat, payload);
 
             await transaction.CommitAsync();
             return chat;
@@ -89,19 +89,19 @@ public class ChatService : IChatService
         }
     }
 
-    public async Task<ChatMessage> CreateMessageAsync(Chat chat, CreateChatMessagePayload request)
+    public async Task<ChatMessage> CreateMessageAsync(Chat chat, CreateChatMessagePayload payload)
     {
-        var sentBy = await _userService.GetByIdAsync(request.SentBy);
+        var sentBy = await _userService.GetByIdAsync(payload.SentBy);
 
         if (sentBy is null)
-            throw new HubException($"Sender with the ID {request.SentBy} does not exist.");
+            throw new HubException($"Sender with the ID {payload.SentBy} does not exist.");
 
         if (chat.Users.All(u => u.Id != sentBy.Id))
             throw new HubException("Sender is not a participant in the chat.");
 
         var message = new ChatMessage { Chat = chat, SentBy = sentBy };
         chat.ChatMessages.Add(message);
-        return await SaveMessageAsync(message, request);
+        return await SaveMessageAsync(message, payload);
     }
 
     public async Task<Chat> CreateWithChatbotAsync(User user)

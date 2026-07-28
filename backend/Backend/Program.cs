@@ -95,7 +95,7 @@ builder.Services.AddAuthorization(options =>
     
 OpenAIClient openAIClient = new OpenAIClient(builder.Configuration["OpenAI:Key"]!);
 builder.Services.AddSingleton(openAIClient);
-    
+
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 
@@ -131,7 +131,15 @@ builder.Services.AddTransient<IReviewService, ReviewService>();
 builder.Services.AddTransient<ISkillService, SkillService>();
 builder.Services.AddTransient<IUserService, UserService>();
 
+builder.Services.AddSwaggerGen(options =>
+{
+    options.CustomSchemaIds(type => type.FullName?.Replace(".", "_"));
+});
+
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 if (app.Environment.IsDevelopment())
 {

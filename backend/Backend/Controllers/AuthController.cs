@@ -22,7 +22,7 @@ public class AuthController : ControllerBase
 		_userService = userService;
 	}
 
-	[HttpPost("changePassword")]
+    [HttpPost("changePassword")]
 	[Authorize(Roles = "User")]
 	public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
 	{

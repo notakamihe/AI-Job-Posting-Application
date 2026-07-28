@@ -73,7 +73,7 @@ public class UserRepository : Repository<User>, IUserRepository
                 where r.Name == role
                 select u;
 
-        return query.Where(u => ids.Contains(u.Id) && (includeChatbot || u.Id != "chatbot")).IncludeAll().ToListAsync();
+        return query.Where(u => (includeChatbot || u.Id != "chatbot") && ids.Contains(u.Id)).IncludeAll().ToListAsync();
     }
 
     public Task<User?> GetByRefreshTokenAsync(string refreshToken)
@@ -83,13 +83,12 @@ public class UserRepository : Repository<User>, IUserRepository
 
     public Task<List<User>> GetPublicOrByUserAsync(string? userId, UserType? type, List<string>? ids)
     {
-         var sql = (
-            from u in _context.Users
-            join userRole in _context.UserRoles on u.Id equals userRole.UserId
-            join role in _context.Roles on userRole.RoleId equals role.Id
-            where role.Name == "User"
-            select u
-        );
+        var sql =
+           from u in _context.Users
+           join userRole in _context.UserRoles on u.Id equals userRole.UserId
+           join role in _context.Roles on userRole.RoleId equals role.Id
+           where role.Name == "User"
+           select u;
         var query = sql
             .Where(u => u.Id != "chatbot")
             .Where(u => !(u is Applicant) || !((Applicant)u).IsPrivate || u.Id == userId);

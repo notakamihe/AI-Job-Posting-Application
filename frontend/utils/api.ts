@@ -1,1 +1,1 @@
-export const API_URL = `http://localhost:${process.env.NEXT_PUBLIC_SERVER_API_PORT ?? 5255}`;
+export const API_URL = process.env.NEXT_PUBLIC_SERVER_API_URL ?? "http://localhost:5255";
