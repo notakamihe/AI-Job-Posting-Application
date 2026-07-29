@@ -132,7 +132,7 @@ public class ApplicationContext : IdentityDbContext<User>
                     Email = "admin@jobpostingsite.site",
                     NormalizedEmail = "ADMIN@JOBPOSTINGSITE.SITE",
 					EmailConfirmed = true,
-					PasswordHash = "AQAAAAIAAYagAAAAEIMoxHXLwcvmJ4S9f4bza70vJmVdfFCcQjSRFXMa+r0TwD5AgiOwdoUQjFGnCbyPhg==",
+					PasswordHash = "AQAAAAIAAYagAAAAEH4NrFD2ERbyo6ZgvrXFVtnscdoit5hmn/K9gWwG6BtuMPH8sPbwnWj6puuqAwVjtA==",
 					LockoutEnabled = true
                 });
         });

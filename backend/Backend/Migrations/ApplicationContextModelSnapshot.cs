@@ -537,7 +537,7 @@ namespace Backend.Migrations
                         {
                             Id = "chatbot",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "23677e6d-562e-4b52-9015-63f6ce8e7cd1",
+                            ConcurrencyStamp = "2aae8fa1-43ab-4d5b-b98f-2673af1acaa4",
                             Email = "chatbot@jobpostingsite.site",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
@@ -545,7 +545,7 @@ namespace Backend.Migrations
                             NormalizedUserName = "CHATBOT@JOBPOSTINGSITE.SITE",
                             PhoneNumberConfirmed = false,
                             RefreshTokenExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "72780ec7-d93a-425e-9c49-081f5b920928",
+                            SecurityStamp = "4c7c613f-d3cb-4e8b-a383-5d772d0b1241",
                             TwoFactorEnabled = false,
                             UserName = "chatbot@jobpostingsite.site"
                         },
@@ -553,16 +553,16 @@ namespace Backend.Migrations
                         {
                             Id = "94ea3562-a459-4082-b760-5a5937970681",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2ea05998-8332-456a-84ec-bcf697d1647f",
+                            ConcurrencyStamp = "e3ee3b0c-27b0-4596-ac3b-d4397f95a2b9",
                             Email = "admin@jobpostingsite.site",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@JOBPOSTINGSITE.SITE",
                             NormalizedUserName = "ADMIN@JOBPOSTINGSITE.SITE",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIMoxHXLwcvmJ4S9f4bza70vJmVdfFCcQjSRFXMa+r0TwD5AgiOwdoUQjFGnCbyPhg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH4NrFD2ERbyo6ZgvrXFVtnscdoit5hmn/K9gWwG6BtuMPH8sPbwnWj6puuqAwVjtA==",
                             PhoneNumberConfirmed = false,
                             RefreshTokenExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "5acd98f7-66f5-470e-8a13-f3f48345eb73",
+                            SecurityStamp = "84f31b88-905c-4995-a4e3-b4cf9f202f54",
                             TwoFactorEnabled = false,
                             UserName = "admin@jobpostingsite.site"
                         });

@@ -714,17 +714,14 @@ namespace Backend.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Embedding", "Industry", "Location", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiry", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "94ea3562-a459-4082-b760-5a5937970681", 0, "2ea05998-8332-456a-84ec-bcf697d1647f", "admin@jobpostingsite.site", true, null, null, null, true, null, "ADMIN@JOBPOSTINGSITE.SITE", "ADMIN@JOBPOSTINGSITE.SITE", "AQAAAAIAAYagAAAAEIMoxHXLwcvmJ4S9f4bza70vJmVdfFCcQjSRFXMa+r0TwD5AgiOwdoUQjFGnCbyPhg==", null, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5acd98f7-66f5-470e-8a13-f3f48345eb73", false, "admin@jobpostingsite.site" },
-                    { "chatbot", 0, "23677e6d-562e-4b52-9015-63f6ce8e7cd1", "chatbot@jobpostingsite.site", false, null, null, null, true, null, "CHATBOT@JOBPOSTINGSITE.SITE", "CHATBOT@JOBPOSTINGSITE.SITE", null, null, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "72780ec7-d93a-425e-9c49-081f5b920928", false, "chatbot@jobpostingsite.site" }
+                    { "94ea3562-a459-4082-b760-5a5937970681", 0, "e3ee3b0c-27b0-4596-ac3b-d4397f95a2b9", "admin@jobpostingsite.site", true, null, null, null, true, null, "ADMIN@JOBPOSTINGSITE.SITE", "ADMIN@JOBPOSTINGSITE.SITE", "AQAAAAIAAYagAAAAEH4NrFD2ERbyo6ZgvrXFVtnscdoit5hmn/K9gWwG6BtuMPH8sPbwnWj6puuqAwVjtA==", null, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "84f31b88-905c-4995-a4e3-b4cf9f202f54", false, "admin@jobpostingsite.site" },
+                    { "chatbot", 0, "2aae8fa1-43ab-4d5b-b98f-2673af1acaa4", "chatbot@jobpostingsite.site", false, null, null, null, true, null, "CHATBOT@JOBPOSTINGSITE.SITE", "CHATBOT@JOBPOSTINGSITE.SITE", null, null, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4c7c613f-d3cb-4e8b-a383-5d772d0b1241", false, "chatbot@jobpostingsite.site" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "8c6c5021-2446-40bc-aaa7-55b3249cee46", "94ea3562-a459-4082-b760-5a5937970681" });
-
-            var file = Path.Combine("Data", "Scripts", "seed.sql");
-            migrationBuilder.Sql(File.ReadAllText(file));
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicantSkills_SkillsId",
