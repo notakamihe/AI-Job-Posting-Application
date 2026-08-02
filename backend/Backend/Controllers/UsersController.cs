@@ -435,7 +435,7 @@ public class UsersController : ControllerBase
         var reviews = User.IsInRole("Admin")
             ? await _reviewService.GetByUserAsync(user)
             : await _reviewService.GetVisibleByUserAsync(user, userId);
-        var count = await _reviewService.CountByUser(user);
+        var count = await _reviewService.CountByUserAsync(user);
 
         return Ok(new ResultsWithCount<ReviewDto>
         {
