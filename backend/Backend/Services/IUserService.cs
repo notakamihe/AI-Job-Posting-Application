@@ -6,7 +6,6 @@ namespace Backend.Services;
 public interface IUserService
 {
     Task<int> CountFollowersByEmployerAsync(Employer employer);
-    Task<int> CountReviewsByUserAsync(User user);
     Task<User> CreateAsync(RegisterRequest request);
     Task DeleteAsync(User user);
     Task FollowAsync(Applicant applicant, Employer employer);

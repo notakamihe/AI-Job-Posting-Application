@@ -16,6 +16,11 @@ namespace Backend.Services
             _userService = userService;
         }
 
+        public Task<int> CountByUser(User user)
+        {
+            return _unitOfWork.Reviews.CountByUserAsync(user);
+        }
+
         public async Task<Review> CreateAsync(CreateReviewRequest request)
         {
             var reviewer = await _userService.GetApplicantByIdAsync(request.ReviewerId!);

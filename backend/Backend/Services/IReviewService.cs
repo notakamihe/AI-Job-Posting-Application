@@ -5,6 +5,7 @@ namespace Backend.Services
 {
     public interface IReviewService
     {
+        Task<int> CountByUser(User user);
         Task<Review> CreateAsync(CreateReviewRequest request);
         Task DeleteAsync(Review review);
         Task<List<Review>> GetAllAsync();

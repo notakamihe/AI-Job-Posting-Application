@@ -53,8 +53,8 @@ public class AuthService : IAuthService
 	    if (!await _userManager.CheckPasswordAsync(user, password))
 		    return false;
 
-	    await _userService.DeleteAsync(user);
-	    return true;
+		await _userService.DeleteAsync(user);
+        return true;
     }
 
     private string GenerateAccessToken(IEnumerable<Claim> claims)
