@@ -64,7 +64,7 @@ public class ChatService : IChatService
             var chat = new Chat();
             _unitOfWork.Chats.Add(chat);
 
-            var chats = await _unitOfWork.Chats.GetByUsersAsync(users);
+            var chats = await GetByParticipantsAsync(users);
             var existing = chats.Find(c => c.Users.Count == users.Count);
 
             if (existing is not null)
@@ -182,10 +182,10 @@ public class ChatService : IChatService
         }
         else
         {
-            var existing = (await _unitOfWork.Chats.GetByUsersAsync(chat.Users)).Find(c =>
-                c.Id != chat.Id && c.Users.Count == chat.Users.Count);
+            var chats = await GetByParticipantsAsync(chat.Users);
+            var duplicate = chats.Find(c => c.Id != chat.Id && c.Users.Count == chat.Users.Count);
 
-            if (existing is not null)
+            if (duplicate is not null)
                 _unitOfWork.Chats.Remove(chat);
         }
 

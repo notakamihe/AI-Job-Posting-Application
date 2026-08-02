@@ -86,18 +86,37 @@ public class UserService : IUserService
     {
         return _unitOfWork.Applicants.CountByFollowedEmployerAsync(employer);
     }
-
-    public Task<int> CountReviewsByUserAsync(User user)
-    {
-        return _unitOfWork.Reviews.CountByUserAsync(user);
-    }
     
     public async Task DeleteAsync(User user)
     {
         if (await _userManager.IsInRoleAsync(user, "Admin"))
             throw new InvalidUserException("Admin cannot be deleted.");
-    
+
+        var chats = await _unitOfWork.Chats.GetByUsersAsync([user]);
+
+        foreach (var chat in chats)
+        {
+            chat.Users.RemoveAll(u => u.Id == user.Id);
+
+            if (chat.Users.Count < 2)
+            {
+                _unitOfWork.Chats.Remove(chat);
+            }
+            else
+            {
+                var chatsWithUsers = await _unitOfWork.Chats.GetByUsersAsync(chat.Users);
+                var duplicate = chatsWithUsers.Find(c => c.Id != chat.Id && c.Users.Count == chat.Users.Count);
+
+                if (duplicate is not null)
+                    _unitOfWork.Chats.Remove(chat);
+            }
+
+            foreach (var message in chat.ChatMessages)
+                message.ReadBy.RemoveAll(u => u.Id == user.Id);
+        }
+
         _unitOfWork.Users.Remove(user);
+
         await _unitOfWork.CompleteAsync();
     }
 
