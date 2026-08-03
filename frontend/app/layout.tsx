@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { Geist } from "next/font/google"
 import AppWrapper from "./AppWrapper";
 import { NavigationGuardProvider } from "next-navigation-guard";
+import packageJson from "@/package.json"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <main className="grow flex flex-col w-full relative">{children}</main>
             <footer className="p-3 text-center bg-primary text-white text-sm font-medium z-10">
               &copy; {year}. All rights reserved
+              <span className="mx-2 opacity-75">&bull;</span>
+              <span className="opacity-75 font-normal">v{packageJson.version}</span>
             </footer>
           </AppWrapper>
         </NavigationGuardProvider>
